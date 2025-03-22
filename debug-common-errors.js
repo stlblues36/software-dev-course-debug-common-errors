@@ -24,22 +24,26 @@ Think about which debugging methods you found most useful and how you might appl
 // Description:
 // This program is intended to display a simple prompt in the console but fails to run.
 
-console.log("Welcome to the bootcamp
+console.log("Welcome to the bootcamp");  // Corrected: String properly closed with quotation marks.
 
-// What’s Wrong?
+// What’s Wrong? // Syntax error: Missing closing quotation mark for the string.
 
 
 // Program B
 // Description:
 // This code attempts to multiply each number in an array by 2 and display the results. However, it crashes at runtime.
 
-let numbers = [2, 4, "eight"];
+let numbers = [2, 4, "eight"]; // Fixed: Ensure only numbers are doubled.
 for (let i = 0; i < numbers.length; i++) {
-  let doubled = numbers[i] * 2;
-  console.log(doubled);
+  if (typeof numbers[i] === 'number') { // Check if the element is a number
+    let doubled = numbers[i] * 2;
+    console.log(doubled);
+  } else {
+    console.log(numbers[i] + " is not a number"); // Handle the case where the element is not a number
+  }
 }
 
-// What’s Wrong?
+// What’s Wrong?  // Type error: "eight" is a string, and multiplying it by 2 will result in NaN.
 
 
 
@@ -51,12 +55,12 @@ function isPrime(num) {
   if (num < 2) return false;
   for (let i = 2; i < num; i++) {
     if (num % i === 0) {
-      return true;  // Supposed to indicate num is NOT prime
+      return false;  // Corrected: Return false when num is divisible by i (num is NOT prime)
     }
   }
-  return false; // Supposed to indicate num IS prime
+  return true; // Corrected: Return true when num is prime (no divisors found)
 }
 
-console.log(isPrime(7)); // Expected true but gets false
+console.log(isPrime(7)); // Expected true, and now it returns true
 
-// What’s Wrong?
+// What’s Wrong?  The issue is in the return true; statement inside the loop. When the function detects that a number is divisible by i (i.e., num % i === 0), it should return false because the number is not prime. However, the current code returns true, which is incorrect for a non-prime number.
